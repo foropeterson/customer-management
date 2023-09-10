@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer List</title>
+</head>
+<body>
+    <h1>Customer List</h1>
+    <ul>
+        {% for customer in customers %}
+        <li>{{ customer.name }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

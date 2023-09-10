@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CRM</title>
+	
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<link rel="stylesheet" href="static/css/main.css">
+<style>
+	#logo{
+}
+
+body{
+	background-color: #ebeff5;
+}
+
+
+#total-orders{
+	background-color: #4cb4c7;
+}
+#orders-delivered {
+	background-color: red;
+	color: #fff;
+	padding: 10px;
+	border-radius: 4px;
+  }
+  
+  #orders-pending {
+	background-color: crimson;
+	color: #fff;
+	padding: 10px;
+	border-radius: 4px;
+  }
+
+
+.add-to-cart-button {
+	display: inline-block;
+	padding: 8px 16px;
+	background-color: gold;
+	color: blue;
+	text-decoration: none;
+	border-radius: 4px;
+	font-weight: bold;
+ }
+ 
+ .add-to-cart-button:hover {
+	background-color: #ffd700;
+ }
+ .delete-button {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+}
+</style>
+	
+</head>
+<body>
+	{%  include 'accounts/navbar.html' %}
+	<div class="container-fluid">
+	{% block content %}
+
+
+
+	{% endblock %}
+    </div>
+	<hr>
+
+	
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Establish WebSocket connection
+      const socket = new WebSocket('ws://localhost:8000/ws/realtime/');
+
+      // Listen for real-time updates
+      socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+
+        // Handle the received data and update the UI accordingly
+        // For example, update the cart or order section with the new data
+      };
+
+      // Make an AJAX request to add the product to the cart or create a new order
+      $.ajax({
+        type: 'POST',
+        url: '/add_to_cart/',
+        data: {
+          product_id: productId
+        },
+        success: function(response) {
+          // Handle the response as needed
+        },
+        error: function(xhr, textStatus, error) {
+          console.log(error);
+        }
+      });
+    });
+  </script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</html>

@@ -1,0 +1,6 @@
+{% extends 'accounts/main.html' %}
+<form method="post" action="{% url 'delete_order' order.id %}">
+  {% csrf_token %}
+  <p>Are you sure you want to delete Order {{ order.id }}?</p>
+  <button type="submit" class="delete-button">Delete</button>
+</form>

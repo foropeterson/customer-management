@@ -1,0 +1,6 @@
+<h2>Confirm Deletion</h2>
+<p>Are you sure you want to delete the customer "{{ customer.name }}"?</p>
+<form method="POST" action="{% url 'delete_customer' customer.id %}">
+    {% csrf_token %}
+    <button type="submit" style="background-color: green; color: white; border: none; padding: 8px 16px; cursor: pointer;">Delete</button>
+</form>

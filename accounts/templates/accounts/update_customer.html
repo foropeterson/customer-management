@@ -1,0 +1,26 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+  <h2>Update Customer</h2>
+  <form method="POST" action="{ url 'update_customer' customer }">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" name="name" value="{{ customer.name }}" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" name="email" value="{{ customer.email }}" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone:</label>
+      <input type="text" name="phone" value="{{ customer.phone }}" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Update Customer</button>
+  </form>
+  {% if update_success %}
+    <p>Customer update successful!</p>
+  {% elif update_error %}
+    <p>Customer update failed. Please try again.</p>
+  {% endif %}
+{% endblock %}

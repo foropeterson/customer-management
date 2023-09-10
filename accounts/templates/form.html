@@ -1,0 +1,6 @@
+<h2>Add Customer</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background-color: #ff5722; color: white; border: none; padding: 8px 16px; cursor: pointer;">Add</button>
+</form>

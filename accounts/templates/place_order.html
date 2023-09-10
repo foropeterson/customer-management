@@ -1,0 +1,36 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+  <h2>Place Order for {{ customer.name }}</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+      <div class="alert alert-danger">
+        {% for field in form %}
+          {% if field.errors %}
+            <strong>{{ field.label }}:</strong>
+            {% for error in field.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% if success_message %}
+      <div class="alert alert-success">{{ success_message }}</div>
+    {% endif %}
+    <div class="form-group">
+      <label for="product">Product:</label>
+      <select name="product" class="form-control">
+        {% for product in products %}
+          <option value="{{ product.id }}">{{ product.name }} - {{ product.price }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="quantity">Quantity:</label>
+      <input type="number" name="quantity" value="1" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-primary">Place Order</button>
+  </form>
+{% endblock %}

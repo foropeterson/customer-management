@@ -1,0 +1,21 @@
+<h1>Order List</h1>
+{% if deletion_success %}
+  <p>Order successfully deleted!</p>
+{% else %}
+  {% if orders %}
+    <ul>
+      {% for order in orders %}
+        <li>{{ order.name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No orders found.</p>
+  {% endif %}
+{% endif %}
+
+
+
+
+
+
+

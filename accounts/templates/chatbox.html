@@ -1,0 +1,13 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+  {% for chat_message in chat_history %}
+    <p><strong>{{ chat_message.sender }}:</strong> {{ chat_message.content }}</p>
+  {% endfor %}
+
+  <form method="post" action="{% url 'chatbox' %}">
+    {% csrf_token %}
+    <!-- Form fields and other elements here -->
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}
